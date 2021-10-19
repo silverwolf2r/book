@@ -1,0 +1,11 @@
+Book.Py
+You do not need to input the Author of the book! You can just leave that space blank!
+book.py when run will search a small list of websites for the book you typed in then display those websites. 
+You can read the html to make sure that it is the boook you want as well as that it will be the first page.
+
+
+Bookpdf.py
+For bookpdf.py you need the DejaVuSansCondensed.ttf in the same directory as the .py and then
+you will be able to essentially do the same as book.py but it will give you a pdf and a txt file
+
+Thats it y'all if you want more links added to search for books on that website
