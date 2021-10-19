@@ -328,7 +328,52 @@ elif chosenlink == 5:
 			link = links
 	
 #link7 novel122.com
-#elif chosenlink == 6:
+#-------------------------------------------------search by classs=chapter-content-p, search by class btn-blue
+elif chosenlink == 6:
+
+	textid = "btn-blue"
+	res = requests.get(link)
+	text = res.text
+	soup = BeautifulSoup(text, 'html.parser')
+	Nextpage = soup.find_all("div", class_="next-page")
+	
+	#prep a document for the book to be written too
+	tity = ''.join(filter(str.isalpha, title))
+	f = open( str(tity) + ".txt", "w") 
+	f.write("HERE IS YOUR BOOK:   ")
+	f.close()
+
+	#set for how many iterations this will run for
+	tfoncode = int(200)
+	x = 0
+	while x < tfoncode + 1:
+		x = x + 1
+		#Get the html from the webpage 
+		res = requests.get(link)
+		text = res.text
+		
+		# Take the text and parses the html out so that it is easy to read
+		soup = BeautifulSoup(text, 'html.parser')
+		title = soup.title.string
+		akt = soup.find("div", class_="chapter-content-p")
+		text = akt.text
+		
+		#Write the page to the document
+		startpage = int(x)
+		final_product = (str(title) + str(text) )
+		fp = final_product # tfontext requires parsing everytime
+		f = open( str(tity) + ".txt", "a") # write page to the document
+		f.write(fp)
+		f.close()
+		print(startpage ,"/",tfoncode )
+		startpage = startpage + 1
+		
+		#get the next url rinse and repeat
+		for links in Nextpage:
+			print(links)
+			link = links
+		
+		
 
 
 #link8 www.topbooks2019.com
@@ -372,4 +417,3 @@ elif chosenlink == 7:
 		
 		#get the next url rinse and repeat
 		link = str(linksy) +  "index_" + str(startpage) + ".html"
-
